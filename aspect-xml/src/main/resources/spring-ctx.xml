@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--
+        <aop:aspectj-autoproxy>元素， 它能够自动代理AspectJ注解的通知类。
+        aop命名空间的其他元素能够让我们直接在Spring配置中声明切面，而不需要使用注解。
+    -->
+    <!--<aop:aspectj-autoproxy />-->
+
+    <aop:config>
+        <aop:pointcut id="performance"
+                      expression="execution(* com.github.fnpac.aop.aspect.business.Performance.perform(..))"/>
+
+        <aop:aspect ref="simpleAspect">
+            <!-- 声明前置通知、后置通知 -->
+            <aop:before
+                    pointcut-ref="performance"
+                    method="silenceCellPhones"/>
+            <aop:before
+                    pointcut-ref="performance"
+                    method="takeSeats"/>
+            <aop:after-returning
+                    pointcut-ref="performance"
+                    method="applause"/>
+            <aop:after-throwing
+                    pointcut-ref="performance"
+                    method="demandRefund"/>
+        </aop:aspect>
+
+        <aop:aspect ref="aroundAspect">
+            <!-- 声明环绕通知 -->
+            <aop:around
+                    pointcut-ref="performance"
+                    method="watchPerformance"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- 为通知传递参数 -->
+    <aop:config>
+        <aop:pointcut id="trackPlayed"
+                      expression="execution(* com.github.fnpac.aop.aspect.business.CompactDisc.playTrack(int)) and args(trackNumber)"/>
+        <aop:aspect ref="parametersAspect">
+            <aop:before
+                    pointcut-ref="trackPlayed"
+                    method="countTrack"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- 通过切面引入新的功能 -->
+    <!--
+    <aop:config>
+        <aop:aspect>
+            <aop:declare-parents
+                    types-matching="com.github.fnpac.aop.aspect.business.Performance+"
+                    implement-interface="com.github.fnpac.aop.aspect.business.Encoreable"
+                    default-impl="com.github.fnpac.aop.aspect.business.DefaultEncoreable"/>
+        </aop:aspect>
+    </aop:config>
+    -->
+
+    <!--
+        使用default-impl来直接标识委托和间接使用delegate-ref的区别在于
+        后者是Spring bean， 它本身可以被注入、 通知或使用其他的Spring配置。
+    -->
+    <bean id="defaultEncoreable" class="com.github.fnpac.aop.aspect.business.DefaultEncoreable" />
+    <aop:config>
+        <aop:aspect>
+            <aop:declare-parents
+                    types-matching="com.github.fnpac.aop.aspect.business.Performance+"
+                    implement-interface="com.github.fnpac.aop.aspect.business.Encoreable"
+                    delegate-ref="defaultEncoreable"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
