@@ -1,4 +1,4 @@
-package com.github.fnpac.aop.aspect.business;
+package com.github.fnpac.aop.business;
 
 import org.springframework.stereotype.Component;
 

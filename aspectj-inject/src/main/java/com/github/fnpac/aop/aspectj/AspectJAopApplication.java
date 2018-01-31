@@ -1,6 +1,6 @@
 package com.github.fnpac.aop.aspectj;
 
-import com.github.fnpac.aop.aspect.business.Performance;
+import com.github.fnpac.aop.business.Performance;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

@@ -1,6 +1,6 @@
 package com.github.fnpac.aop.aspectj;
 
-import com.github.fnpac.aop.aspect.business.CriticismEngine;
+import com.github.fnpac.aop.business.CriticismEngine;
 
 import java.util.logging.Logger;
 
@@ -19,9 +19,11 @@ public aspect CriticAspect {
 
     public CriticAspect() {}
 
-    pointcut performance(): execution(* com.github.fnpac.aop.aspect.business.Performance.perform()(..));
+    // aspect是关键字，故包名请避免使用该名称
+    // 如果切面不起作用，请将execution改为call
+    pointcut performance(): call(* com.github.fnpac.aop.business.Performance.perform(..));
 
-    afterReturning(): performance() {
+    after() returning : performance(){
         logger.info(criticismEngine.getCriticism());
     }
 }

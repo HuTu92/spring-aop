@@ -17,7 +17,7 @@ public class Audience {
     /**
      * 切点
      */
-    @Pointcut(value = "execution(* com.github.fnpac.aop.aspect.business.Performance.perform(..))")
+    @Pointcut(value = "execution(* com.github.fnpac.aop.business.Performance.perform(..))")
     public void performance() {
     }
 

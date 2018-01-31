@@ -18,7 +18,7 @@ public class TrackCounter {
     /**
      * @param trackNum
      */
-    @Pointcut(value = "execution(* com.github.fnpac.aop.aspect.business.CompactDisc.playTrack(int)) && args(trackNum)")
+    @Pointcut(value = "execution(* com.github.fnpac.aop.business.CompactDisc.playTrack(int)) && args(trackNum)")
     public void trackPlayed(int trackNum) {
     }
 

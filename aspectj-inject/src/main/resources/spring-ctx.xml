@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="criticismEngine" class="com.github.fnpac.aop.aspect.business.CriticismEngineImpl">
+    <bean id="criticismEngine" class="com.github.fnpac.aop.business.CriticismEngineImpl">
         <property name="criticismPool">
             <list>
                 <value>Worst performance ever!</value>

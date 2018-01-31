@@ -1,8 +1,8 @@
 package com.github.fnpac.aop.aspect;
 
-import com.github.fnpac.aop.aspect.business.CompactDisc;
-import com.github.fnpac.aop.aspect.business.Encoreable;
-import com.github.fnpac.aop.aspect.business.Performance;
+import com.github.fnpac.aop.business.CompactDisc;
+import com.github.fnpac.aop.business.Encoreable;
+import com.github.fnpac.aop.business.Performance;
 import com.github.fnpac.aop.aspect.xml.parameters.TrackCounter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
