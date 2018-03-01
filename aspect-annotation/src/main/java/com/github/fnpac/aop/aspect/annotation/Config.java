@@ -15,7 +15,7 @@ import java.util.List;
  * Created by 刘春龙 on 2018/1/30.
  */
 @Configuration
-@EnableAspectJAutoProxy // 启用自动代理功能
+@EnableAspectJAutoProxy // 启用自动代理功能，类似于Spring的<aop：aspectj-autoproxy> XML元素的功能
 public class Config {
 
     ////////////////////////////////////////////////////////////////////

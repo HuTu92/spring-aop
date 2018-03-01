@@ -4,8 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--
-        <aop:aspectj-autoproxy>元素， 它能够自动代理AspectJ注解的通知类。
-        aop命名空间的其他元素能够让我们直接在Spring配置中声明切面，而不需要使用注解。
+        一、<aop:aspectj-autoproxy>元素， 启用自动代理AspectJ注解的通知类。类似于 Java config @EnableAspectJAutoProxy
+
+        二、aop命名空间的其他元素能够让我们直接在Spring xml配置中声明切面，而不需要使用注解。
+
+        三、<aop:aspect>定义切面时，只需要定义bean就行，而定义<aop:advisor>中引用的通知时，通知必须实现Advice接口。
     -->
     <!--<aop:aspectj-autoproxy />-->
 
